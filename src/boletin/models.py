@@ -14,5 +14,3 @@ class Registrado(models.Model):
 
     def __str__(self):      #Python 3
         return self.email
-
-        
