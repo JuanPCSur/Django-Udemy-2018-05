@@ -1,12 +1,49 @@
 <!-- <h1> Holaa Muundoo </h1> -->
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block head_title %}
+Bienvenidos...| {{ block.super }}
+{% endblock %}
+
+<!-- clase 24 -->
+{% block jumbotron %}
+<div class="jumbotron">
+  <div class='row'>
+    <div class='col-sm-6'>
+      <h1>Probando Django </h1>
+      <p class="lead">Estamos haciendo páginas sencillas con Django y bootstrap</p>
+      <a class="btn btn-lg btn-primary" href="../../components/navbar/" role="button">Únete &raquo;</a>
+    </div>
+    <div class='col-sm-6' style='background-color:black;height:300px;'></div>
+  </div>
+</div>
+{% endblock %}
+
 {{ titulo}} <br/>
 {{ request.user}} <br/>
 <!-- variable = {{ abc}} -->
 <hr/>
 <br/>
 <!-- {% if form %} -->
-<form method="post" action="">{% csrf_token %}
-{{el_form.as_p }}
-<input type='submit' value='Regístrame' />
-</form>
+{% block content %}
+<div class='row'>
+  <div class='col-sm-3 col-xs-12 pull-right'>
+    <p class='lead text-align-center'> {{ titulo }} </p>
+    <form method="post" action="">{% csrf_token %}
+    {{el_form|crispy}}
+    <input type='submit' value='Regístrame' />
+    </form>
+  </div>
+<div class='col-sm-3'>
+  <p class='lead text-align-center'>Creado con Django y Bootstrap </p>
+</div>
+<div class='col-sm-3'>
+  <p class='lead text-align-center'>y picando mucho </p>
+</div>
+<div class='col-sm-3'>
+  <p class='lead text-align-center'>Open Source </p>
+</div>
+</div>
+<hr/>
+{% endblock %}
  <!-- {% endif %} -->

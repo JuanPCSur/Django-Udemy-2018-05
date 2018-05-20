@@ -1,10 +1,21 @@
 <!-- <h1> Holaa Muundoo </h1> -->
-{{ titulo}} <br/>
-{{ request.user}} <br/>
-<!-- variable = {{ abc}} -->
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{{ titulo}}
 <hr/>
-<br/>
+
+
+{% block content %}
+<div class='row'>
+  <div class='col-sm-6 col-sm-offset-3'>
+{% if titulo %}
+<h1 class='text-align-center'>{{ titulo }}</h1>
+{% endif %}
 <form method="post" action="">{% csrf_token %}
-{{form.as_p }}
-<input type='submit' value='Regístrame' />
+{{form|crispy }}
+<input class='btn btn-primary' type='submit' value='enviar' />
 </form>
+  </div>
+</div>
+{% endblock %}

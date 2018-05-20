@@ -41,8 +41,13 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+    'django.contrib.sites',         #anado para resgistration
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # apps de terceros
+    'crispy_forms',
+    'registration',
+    # mis apps
     'boletin',
 ]
 
@@ -57,6 +62,9 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'pd110.urls'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'    #clase 25
+
 
 TEMPLATES = [
     {
@@ -110,7 +118,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es'
 
 TIME_ZONE = 'UTC'
 
@@ -125,7 +133,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_URL = '/media/'
+#STATIC_URL = '/media/'         # error Karlita? clase 22
+MEDIA_URL = '/media/'
 #
 
 STATICFILES_DIRS = [
@@ -135,3 +144,8 @@ STATICFILES_DIRS = [
 
 STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_env","static_root")
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_env","media_root")
+
+ACCOUNT_ACTIVATION_DAYS = 7 #para app registration, dias que tiene un usuario para confirmar registro
+REGISTRATION_AUTO_LOGIN = True      #para app registration
+SITE_ID = 1     # clase 31
+LOGIN_REDIRECT_URL = '/'  # clase 32
