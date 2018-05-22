@@ -1,4 +1,21 @@
 /* Show it's not fixed to the top */
 body {
-  min-height: 75rem;
+  min-height: 1000px;
+  }
+.navbar-static-top {
+  margin-bottom: 0px;
+  background-color: #172548 !important;
+  }
+.navbar-default {
+  margin-bottom: 0px;
+  background-color: #172548 !important;
+  border-color: #337ab7;
+  }
+.collapse{
+  margin-bottom: 0px;
+  background-color: #172548 !important;
+  }
+.navbar-collapse{
+  margin-bottom: 0px;
+  background-color: #172548 !important;
 }

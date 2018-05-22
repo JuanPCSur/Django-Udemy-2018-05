@@ -1,22 +1,56 @@
 <!-- <h1> Holaa Muundoo </h1> -->
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
+{% load static %}
+
 {% block head_title %}
-Bienvenidos...| {{ block.super }}
+    Bienvenidos...| {{ block.super }}
 {% endblock %}
+
+<style>
+/* clase 35 */
+{% block style %}
+  .jumbotron{
+    background-color: #172548 !important;
+    color: white;
+  }
+  .fa-5x{
+    font-size: 7em !important;
+  }
+{% endblock %}
+</style>
+
 
 <!-- clase 24 -->
 {% block jumbotron %}
+{% if request.user.is_staff %}
+<table class="table">
+  {% for instance in queryset %}
+<tr>
+  <td>{{ forloop.counter }}</td>
+  <td>{{ instance}}</td><td> {{ instance.nombre}}</td>
+  <td>hace {{ instance.timestamp|timesince}} </td><br/>
+</tr>
+{% endfor %}
+</table>
+{% else %}
+
 <div class="jumbotron">
+<div class="container">
   <div class='row'>
     <div class='col-sm-6'>
       <h1>Probando Django </h1>
       <p class="lead">Estamos haciendo páginas sencillas con Django y bootstrap</p>
       <a class="btn btn-lg btn-primary" href="../../components/navbar/" role="button">Únete &raquo;</a>
     </div>
-    <div class='col-sm-6' style='background-color:black;height:300px;'></div>
+    <div class='col-sm-6'>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/ChSvnSv_3aw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    <!-- <img src="http://ocadizdigital.es/sites/default/files/_banner/conoce-onda-cadiz.jpg" class="img-responsive"/> -->
+    </div>
   </div>
 </div>
+</div>
+{% endif %}
 {% endblock %}
 
 {{ titulo}} <br/>
@@ -26,24 +60,41 @@ Bienvenidos...| {{ block.super }}
 <br/>
 <!-- {% if form %} -->
 {% block content %}
+{% if not request.user.is_staff %}
 <div class='row'>
   <div class='col-sm-3 col-xs-12 pull-right'>
-    <p class='lead text-align-center'> {{ titulo }} </p>
-    <form method="post" action="">{% csrf_token %}
-    {{el_form|crispy}}
-    <input type='submit' value='Regístrame' />
-    </form>
+    {% if not user.is_authenticated %}
+      <p class='lead text-align-center'> Suscríbete </p>
+      <form method="post" action="">{% csrf_token %}
+      {{el_form|crispy}}
+      <input type='submit' value='Regístrame' />
+      </form>
+      {% else %}
+      <p class='lead text-align-center'> {{ titulo }}
+      <br/><i class="fas fa-school fa-5x"></i>
+      </p>
+      {% endif %}
   </div>
 <div class='col-sm-3'>
-  <p class='lead text-align-center'>Creado con Django y Bootstrap </p>
+  <p class='lead text-align-center'>Creado con Django y Bootstrap
+  </p>
+  <img src='{% static "img/calendar.png" %}' class="img-responsive"/>
+
 </div>
 <div class='col-sm-3'>
-  <p class='lead text-align-center'>y picando mucho </p>
+  <p class='lead text-align-center'>y picando mucho
+    <br/>
+    <i class="fas fa-spinner fa-spin fa-3x fa-stack-2x"></i>
+  <i class="fab fa-angellist fa-5x fa-stack-1x" style="color:grey"></i>
+ </p>
 </div>
 <div class='col-sm-3'>
-  <p class='lead text-align-center'>Open Source </p>
+  <p class='lead text-align-center'>Open Source
+    <br/>
+  <i class="far fa-check-circle fa-5x fa-spin"></i> </p>
 </div>
 </div>
 <hr/>
+{% endif %}
 {% endblock %}
  <!-- {% endif %} -->

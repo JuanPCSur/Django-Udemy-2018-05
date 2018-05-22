@@ -47,6 +47,17 @@ def inicio(request):
         #obj= Registrado()
         #obj.email= abc
         #obj.save()
+    if request.user.is_authenticated() and request.user.is_staff:
+        #clase 39
+        queryset = Registrado.objects.all().order_by("-timestamp").filter(nombre__icontains="per") 
+        # i = 1
+        # for instance in Registrado.objects.all():
+        #     print(i)
+        #     print(instance.nombre)
+        #     i +=1
+        context = {
+            "queryset":queryset
+        }
     return render(request, "inicio.html",context)
 
 def contact(request):

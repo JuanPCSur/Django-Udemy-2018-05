@@ -1,5 +1,6 @@
 <!doctype html>
 {% load static %}
+<!-- base.html  -->
 
 <html lang="en">
   <head>
@@ -11,6 +12,12 @@
 
     <title>{% block head_title %}Pd_110{% endblock %}</title>
 
+
+<style>
+/* clase 35 */
+{% block style %}{% endblock %}
+</style>
+
     <!-- Bootstrap core CSS - lo quitamos -->
 {% include "head_css.html" %}
 
@@ -18,26 +25,15 @@
 
   <body>
 <!--quitamos la etiqueta nav - clase 24  -->
-{% include "navbar.html" %}
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
+    {% include "navbar.html" %}
 
-  </body>
-</html>
-    <main role="main" class="container">
+
       <!--quitamos el jumbotron  - clase 24  -->
-{% block jumbotron %}
-
-{% endblock %}
+      {% block jumbotron %}
+      {% endblock %}
 
 {% block content %}
 {% endblock %}
-
-    </main>
 
 {% include "javascript.html" %}
 
